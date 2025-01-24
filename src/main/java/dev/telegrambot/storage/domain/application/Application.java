@@ -4,6 +4,7 @@ import dev.telegrambot.storage.domain.course.Course;
 import dev.telegrambot.storage.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Table(name = "applications")
 @Data
 @NoArgsConstructor
+@Builder
 public class Application {
 
     @Id
