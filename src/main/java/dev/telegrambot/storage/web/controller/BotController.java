@@ -2,6 +2,7 @@ package dev.telegrambot.storage.web.controller;
 
 import dev.telegrambot.storage.domain.user.User;
 import dev.telegrambot.storage.service.BotService;
+import dev.telegrambot.storage.service.CourseService;
 import dev.telegrambot.storage.web.dto.UserDto;
 import dev.telegrambot.storage.web.dto.validators.OnCreate;
 import dev.telegrambot.storage.web.mappers.UserMapper;
@@ -12,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/bot")
 @RequiredArgsConstructor
@@ -21,6 +24,7 @@ public class BotController {
 
     private final UserMapper userMapper;
     private final BotService botService;
+    private final CourseService courseService;
 
     @Operation(summary = "Create User", description = "Create 4 offers")
     @PostMapping("/{courseName}")
@@ -30,5 +34,12 @@ public class BotController {
         botService.createUser(user, courseName);
         // TODO Узнай, на что должна быть ссылка
         return "Some string with reference";
+    }
+
+
+    @Operation(summary = "Get All names", description = "Get All courses names")
+    @GetMapping("courses")
+    public List<String> getCourseNames() {
+        return courseService.getAllCoursesTitle();
     }
 }
