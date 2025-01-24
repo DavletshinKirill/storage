@@ -17,7 +17,8 @@ public class UserServiceImpl implements UserService {
     public User createUser(User user) {
         try {
             User savedUser = getUserByEmail(user.getEmail());
-            throw new UserAlreadyExist(String.format("User with email: %s doesn't exist", user.getEmail()), savedUser);
+            throw new UserAlreadyExist(String.format("User with email: %s doesn't exist", user
+                    .getEmail()), savedUser);
         }
         catch (UserNotFoundException e) {
             return userRepository.save(user);

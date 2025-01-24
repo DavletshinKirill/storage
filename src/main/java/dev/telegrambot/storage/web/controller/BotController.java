@@ -22,8 +22,8 @@ public class BotController {
     private final UserMapper userMapper;
     private final BotService botService;
 
-    @Operation(summary = "/{courseName}", description = "Create 4 offers")
-    @PostMapping()
+    @Operation(summary = "Create User", description = "Create 4 offers")
+    @PostMapping("/{courseName}")
     public String createUser(@PathVariable String courseName, @Validated(OnCreate.class) @RequestBody UserDto userDto) {
         log.info(userDto.toString());
         User user = userMapper.toEntity(userDto);
